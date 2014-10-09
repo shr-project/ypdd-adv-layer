@@ -194,7 +194,7 @@ static ssize_t simkey_store(struct kobject *kobj, struct kobj_attribute *attr,
 	int var;
 
 	if        ('<' == buf[0]) broadcast=1;
-	  else if ('>' == buf[0]) broadcast=1;
+	  else if ('>' == buf[0]) broadcast=0;
 	  else if ('[' == buf[0]) loopback=1;
 	  else if (']' == buf[0]) loopback=0;
 	  else if ('0' == buf[0]) {simkey=0; key=simkey;}
