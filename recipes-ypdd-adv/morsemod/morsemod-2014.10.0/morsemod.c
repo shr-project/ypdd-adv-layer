@@ -204,7 +204,7 @@ static ssize_t simkey_store(struct kobject *kobj, struct kobj_attribute *attr,
 }
 
 static struct kobj_attribute simkey_attribute =
-	__ATTR(key, 0666, simkey_show, simkey_store);
+	__ATTR(simkey, 0666, simkey_show, simkey_store);
 
 /*
  * These are the core LED and Key attibutes.
