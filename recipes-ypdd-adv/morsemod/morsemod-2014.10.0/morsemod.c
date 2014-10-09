@@ -71,7 +71,7 @@ static void morsemod_timer(unsigned long dev_addr)
 			key = 0;
 
 		message_index++;
-		if (message_index <= strlen(message_str)) {
+		if (message_index >= strlen(message_str)) {
 			message_index=0;
 		}
 	}
