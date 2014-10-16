@@ -158,7 +158,7 @@ char scan_morse_in(void) {
 		if (highcnt <= dit_max_cnt)
 			strcat(inMorseBuf,"*");
 		else
-			strcat(inMorseBuf,"*");
+			strcat(inMorseBuf,"-");
 		highcnt=0;
 	}
 
