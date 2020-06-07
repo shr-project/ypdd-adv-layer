@@ -191,8 +191,6 @@ static ssize_t simkey_show(struct kobject *kobj, struct kobj_attribute *attr,
 static ssize_t simkey_store(struct kobject *kobj, struct kobj_attribute *attr,
                          const char *buf, size_t count)
 {
-	int var;
-
 	if        ('<' == buf[0]) broadcast=1;
 	  else if ('>' == buf[0]) broadcast=0;
 	  else if ('[' == buf[0]) loopback=1;
