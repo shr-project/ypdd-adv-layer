@@ -57,7 +57,7 @@ static char message_str[1024];
 static int  message_index = 0;
 
 
-static void morsemod_timer(unsigned long dev_addr)
+static void morsemod_timer(struct timer_list *tl)
 {
 	/* printk(KERN_INFO "TICK: B=%d, I=%d\n",broadcast,message_index); */
 
@@ -92,10 +92,7 @@ void create_timers(void) {
 	/* printk(KERN_INFO "Setting up timers\n"); */
 
 	/* Initialize the timer */
-	init_timer(&morsemod_timer_struct);
-
-	/* Set up the timer callback */
-	morsemod_timer_struct.function = &morsemod_timer;
+	timer_setup(&morsemod_timer_struct, morsemod_timer, 0);
 
 	/* Set up the timeout */
 	morsemod_timer_struct.expires = future_in_ms(morsemod_timeout);
