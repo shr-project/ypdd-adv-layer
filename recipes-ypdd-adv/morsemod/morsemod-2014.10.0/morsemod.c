@@ -57,7 +57,7 @@ static char message_str[1024];
 static int  message_index = 0;
 
 
-static void morsemod_timer(unsigned long dev_addr)
+static void morsemod_timer(struct timer_list *tl)
 {
 	/* printk(KERN_INFO "TICK: B=%d, I=%d\n",broadcast,message_index); */
 
@@ -92,10 +92,7 @@ void create_timers(void) {
 	/* printk(KERN_INFO "Setting up timers\n"); */
 
 	/* Initialize the timer */
-	init_timer(&morsemod_timer_struct);
-
-	/* Set up the timer callback */
-	morsemod_timer_struct.function = &morsemod_timer;
+	timer_setup(&morsemod_timer_struct, morsemod_timer, 0);
 
 	/* Set up the timeout */
 	morsemod_timer_struct.expires = future_in_ms(morsemod_timeout);
@@ -191,8 +188,6 @@ static ssize_t simkey_show(struct kobject *kobj, struct kobj_attribute *attr,
 static ssize_t simkey_store(struct kobject *kobj, struct kobj_attribute *attr,
                          const char *buf, size_t count)
 {
-	int var;
-
 	if        ('<' == buf[0]) broadcast=1;
 	  else if ('>' == buf[0]) broadcast=0;
 	  else if ('[' == buf[0]) loopback=1;
@@ -204,7 +199,7 @@ static ssize_t simkey_store(struct kobject *kobj, struct kobj_attribute *attr,
 }
 
 static struct kobj_attribute simkey_attribute =
-	__ATTR(simkey, 0666, simkey_show, simkey_store);
+	__ATTR(simkey, 0661, simkey_show, simkey_store);
 
 /*
  * These are the core LED and Key attibutes.
@@ -240,9 +235,9 @@ static ssize_t b_store(struct kobject *kobj, struct kobj_attribute *attr,
 }
 
 static struct kobj_attribute led_attribute =
-	__ATTR(led, 0666, b_show, b_store);
+	__ATTR(led, 0661, b_show, b_store);
 static struct kobj_attribute key_attribute =
-	__ATTR(key, 0666, b_show, b_store);
+	__ATTR(key, 0661, b_show, b_store);
 
 
 /*
