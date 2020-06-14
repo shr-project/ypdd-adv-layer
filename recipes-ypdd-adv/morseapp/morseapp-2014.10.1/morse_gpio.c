@@ -88,16 +88,16 @@ void open_gpio_ports(void) {
 		fd_sim = open(module_port_dir, O_RDWR);
 	}
 	if (GPIO_DEVICE_BEAGLEBLACK == gpio_device) {
-		fd_key = open_a_gpio_port(60,O_RDONLY);
-		fd_led = open_a_gpio_port(7,O_WRONLY);
+		fd_key = open_a_gpio_port(GPIO_DEVICE_BEAGLEBLACK_KEY,O_RDONLY);
+		fd_led = open_a_gpio_port(GPIO_DEVICE_BEAGLEBLACK_LED,O_WRONLY);
 	}
 	if (GPIO_DEVICE_MINNOWMAX == gpio_device) {
-		fd_key = open_a_gpio_port(84,O_RDONLY);
-		fd_led = open_a_gpio_port(82,O_WRONLY);
+		fd_key = open_a_gpio_port(GPIO_DEVICE_MINNOWMAX_KEY,O_RDONLY);
+		fd_led = open_a_gpio_port(GPIO_DEVICE_MINNOWMAX_LED,O_WRONLY);
 	}
 	if (GPIO_DEVICE_WANDBOARD == gpio_device) {
-		fd_key = open_a_gpio_port(24,O_RDONLY);
-		fd_led = open_a_gpio_port(91,O_WRONLY);
+		fd_key = open_a_gpio_port(GPIO_DEVICE_WANDBOARD_KEY,O_RDONLY);
+		fd_led = open_a_gpio_port(GPIO_DEVICE_WANDBOARD_LED,O_WRONLY);
 	}
 
 	sprintf(buf," : fd_key=%d, fd_led=%d\n",fd_key,fd_led);
@@ -126,16 +126,16 @@ void close_gpio_ports(void) {
 		close(fd_led);
 	}
 	if (GPIO_DEVICE_BEAGLEBLACK == gpio_device) {
-		close_a_gpio_port(60);
-		close_a_gpio_port(7);
+		close_a_gpio_port(GPIO_DEVICE_BEAGLEBLACK_KEY);
+		close_a_gpio_port(GPIO_DEVICE_BEAGLEBLACK_LED);
 	}
 	if (GPIO_DEVICE_MINNOWMAX == gpio_device) {
-		close_a_gpio_port(84);
-		close_a_gpio_port(82);
+		close_a_gpio_port(GPIO_DEVICE_MINNOWMAX_KEY);
+		close_a_gpio_port(GPIO_DEVICE_MINNOWMAX_LED);
 	}
 	if (GPIO_DEVICE_WANDBOARD == gpio_device) {
-		close_a_gpio_port(24);
-		close_a_gpio_port(91);
+		close_a_gpio_port(GPIO_DEVICE_WANDBOARD_KEY);
+		close_a_gpio_port(GPIO_DEVICE_WANDBOARD_LED);
 	}
 
 	debug(1," Closed!");

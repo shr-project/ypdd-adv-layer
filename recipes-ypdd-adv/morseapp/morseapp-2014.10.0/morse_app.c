@@ -36,7 +36,7 @@ int parent (int [],pid_t); int child (int []); /* Prototypes. */
 
 void debug(int level, char* msg) {
 	if (level <= debug_mode) {
-		printf(msg);
+		printf("%s", msg);
 	}
 }
 
