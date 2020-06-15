@@ -1,10 +1,4 @@
-LICENSE = "GPLv2"
-LIC_FILES_CHKSUM = "file://calamari/calamari-spidev-test.c;endline=16;md5=c6b62db27ad6e08ab73d318148027dc0"
-
-SRCREV = "d8589f4543cea45e3e4cba254a9aaa02b6ff4b9d"
-SRC_URI += "git://github.com/shr-project/minnow-max-extras.git;protocol=https"
-
-S = "${WORKDIR}/git"
+require minnow-max-extras.inc
 
 do_install() {
     # for now just copy the shell scripts and ignore the modules directory
@@ -16,4 +10,12 @@ do_install() {
     cp --preserve=mode,timestamps -R ${S}/onboard ${D}${bindir}/minnow-max-extras/
 }
 
-RDEPENDS_${PN} = "bash i2c-tools"
+RDEPENDS_${PN} = " \
+    bash \
+    i2c-tools \
+    kmod-minnow-max-calamari \
+    kmod-minnow-max-i2c \
+    kmod-minnow-max-ika \
+    kmod-minnow-max-low-speed-spidev \
+    kmod-minnow-max-mpu6050 \
+"
